@@ -1,0 +1,61 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+logs/*
+debug.log
+error.log
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Cache
+.cache/
+.parcel-cache/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# TypeScript build output
+*.tsbuildinfo
+
+# Swagger generated files (if generated)
+swagger.json
+
+# Public uploads (if user-uploaded content is stored locally)
+uploads/
+public/uploads/
+
+# Local database or data dumps
+*.sqlite
+*.db
+*.sql
+dump.rdb

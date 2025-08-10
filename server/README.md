@@ -1,3 +1,4 @@
+
 # **ShieldTalk** – Secure Communication & Authentication Platform 🔐💬
 
 ShieldTalk is a **security-first communication platform** that combines **real-time chat** with **enterprise-grade authentication**.
@@ -67,4 +68,5 @@ This project is actively being developed to showcase **secure, scalable, and mod
 ## **📄 License**
 
 This project is proprietary and intended for **portfolio and demonstration purposes**.
+
 

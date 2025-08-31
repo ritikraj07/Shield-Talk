@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Shield-Talk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            background: white;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .profile-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f72585, #4361ee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .profile-actions {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .profile-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-top: 0.5rem;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4ade80;
+        }
+
+        .profile-body {
+            padding: 2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .badges-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .badge i {
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .profile-actions-bottom {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .privacy-note {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-actions-bottom {
+                flex-direction: column;
+            }
+            
+            .profile-header {
+                padding: 1.5rem;
+            }
+            
+            .profile-body {
+                padding: 1.5rem;
+            }
+            
+            .avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+            }
+            
+            .badges-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">ST</div>
+                <span>Shield-Talk</span>
+            </div>
+            <a href="chat.html" class="back-btn">← Back to Chat</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-actions">
+                        <button class="action-btn" onclick="blockUser()">
+                            <i class="fas fa-ban"></i>
+                        </button>
+                        <button class="action-btn" onclick="reportUser()">
+                            <i class="fas fa-flag"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="avatar">SG</div>
+                    <h1>Sarah Garcia</h1>
+                    <p>@sarahg</p>
+                    
+                    <div class="profile-status">
+                        <div class="status-indicator"></div>
+                        <span>Online now</span>
+                    </div>
+                </div>
+                
+                <div class="profile-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Age</span>
+                            <span class="info-value">26 years old</span>
+                        </div>
+                        
+                        <div class="info-item">
+                            <span class="info-label">Gender</span>
+                            <span class="info-value">Female</span>
+                        </div>
+                        
+                        <div class="info-item">
+                            <span class="info-label">Location</span>
+                            <span class="info-value">California, USA</span>
+                        </div>
+                        
+                        <div class="info-item">
+                            <span class="info-label">Member since</span>
+                            <span class="info-value">March 2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">About me</span>
+                        <span class="info-value">Hi there! I'm Sarah, a graphic designer from California. I love traveling, photography, and meeting new people from around the world. Let's have a great conversation!</span>
+                    </div>
+                    
+                    <h2 class="section-title">Shared Interests</h2>
+                    <div class="badges-container">
+                        <div class="badge">
+                            <i class="fas fa-palette"></i>
+                            <span>Art & Design</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-camera"></i>
+                            <span>Photography</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-plane"></i>
+                            <span>Travel</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-music"></i>
+                            <span>Music</span>
+                        </div>
+                    </div>
+                    
+                    <h2 class="section-title">Conversation Stats</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Chats together</span>
+                            <span class="info-value">3 conversations</span>
+                        </div>
+                        
+                        <div class="info-item">
+                            <span class="info-label">Average rating</span>
+                            <span class="info-value">⭐ 4.8/5</span>
+                        </div>
+                        
+                        <div class="info-item">
+                            <span class="info-label">Last chat</span>
+                            <span class="info-value">2 days ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-note">
+                        <i class="fas fa-info-circle"></i>
+                        Some information is hidden due to privacy settings
+                    </div>
+                    
+                    <div class="profile-actions-bottom">
+                        <button class="btn btn-primary" onclick="startChat()">
+                            <i class="fas fa-comment"></i> Start Chat
+                        </button>
+                        <button class="btn btn-outline" onclick="addToContacts()">
+                            <i class="fas fa-user-plus"></i> Add to Contacts
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Shield-Talk. All rights reserved. | <a href="privacy.html" style="color: #ddd;">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Get URL parameters to determine which user profile to show
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
+        
+        // In a real app, we would fetch user data based on ID
+        if (userId) {
+            // Simulate fetching user data
+            setTimeout(() => {
+                // This would be replaced with actual API call
+                document.title = `${userId}'s Profile - Shield-Talk`;
+            }, 100);
+        }
+        
+        function startChat() {
+            alert('Starting chat with this user...');
+            window.location.href = 'chat.html';
+        }
+        
+        function addToContacts() {
+            alert('User added to your contacts!');
+        }
+        
+        function blockUser() {
+            if (confirm('Are you sure you want to block this user? You will no longer be matched with them.')) {
+                alert('User has been blocked.');
+            }
+        }
+        
+        function reportUser() {
+            const reason = prompt('Please specify the reason for reporting this user:');
+            if (reason) {
+                alert('Thank you for your report. We will review it shortly.');
+            }
+        }
+        
+        // Simulate user status changes
+        setInterval(() => {
+            const statusIndicator = document.querySelector('.status-indicator');
+            const statusText = document.querySelector('.profile-status span:last-child');
+            
+            // Randomly change status for demo purposes
+            if (Math.random() > 0.7) {
+                statusIndicator.style.background = '#f87171';
+                statusText.textContent = 'Offline';
+            } else {
+                statusIndicator.style.background = '#4ade80';
+                statusText.textContent = 'Online now';
+            }
+        }, 10000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile - Shield-Talk</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/profile-edit.css" />
+    <script src="./script/auth.check.js" defer></script>
+    <script src="./script/profile-edit.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container header-content">
+        <div class="logo">
+          <div class="logo-icon">ST</div>
+          <span>Shield-Talk</span>
+        </div>
+        <a href="profile.html" class="back-btn">← Back to Profile</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="profile-container">
+          <div class="profile-header">
+            <div class="profile-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <h1>Edit Your Profile</h1>
+            <p>Customize how others see you on Shield-Talk</p>
+            <!-- <button class="change-avatar">
+              <i class="fas fa-camera"></i>
+              Change Avatar
+            </button> -->
+          </div>
+
+          <div class="profile-body">
+            <div class="form-section">
+              <h2 class="section-title">
+                <i class="fas fa-user-circle"></i>
+                Basic Information
+              </h2>
+
+              <div class="form-group">
+                <label for="display-name">Display Name</label>
+                <input
+                  type="text"
+                  id="display-name"
+                  class="form-control"
+                  value="Sarah"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  class="form-control"
+                  value="sarah_designer"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input
+                  type="text"
+                  id="location"
+                  class="form-control"
+                  value="California, USA"
+                />
+              </div>
+            </div>
+
+            <div class="form-section" style="margin-top: 2rem">
+              <h2 class="section-title">
+                <i class="fas fa-info-circle"></i>
+                About Me
+              </h2>
+
+              <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea id="bio" class="form-control">
+Hi there! I'm Sarah, a graphic designer from California. I love traveling, photography, and meeting new people from around the world. Let's have a great conversation!</textarea
+                >
+              </div>
+            </div>
+
+            <div class="form-section" style="margin-top: 2rem">
+              <h2 class="section-title">
+                <i class="fas fa-heart"></i>
+                Shared Interests
+              </h2>
+              <p>
+                Select interests to help us match you with like-minded people
+              </p>
+
+              <div class="interests-grid">
+                <div class="interest-item" onclick="toggleInterest('art')">
+                  <div class="interest-checkbox" id="art-checkbox"></div>
+                  <div class="interest-text">Art & Design</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('photo')">
+                  <div
+                    class="interest-checkbox checked"
+                    id="photo-checkbox"
+                  ></div>
+                  <div class="interest-text">Photography</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('travel')">
+                  <div class="interest-checkbox" id="travel-checkbox"></div>
+                  <div class="interest-text">Travel</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('music')">
+                  <div class="interest-checkbox" id="music-checkbox"></div>
+                  <div class="interest-text">Music</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('sports')">
+                  <div class="interest-checkbox" id="sports-checkbox"></div>
+                  <div class="interest-text">Sports</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('tech')">
+                  <div class="interest-checkbox" id="tech-checkbox"></div>
+                  <div class="interest-text">Technology</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('food')">
+                  <div class="interest-checkbox" id="food-checkbox"></div>
+                  <div class="interest-text">Food & Cooking</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('books')">
+                  <div class="interest-checkbox" id="books-checkbox"></div>
+                  <div class="interest-text">Books</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('gaming')">
+                  <div class="interest-checkbox" id="gaming-checkbox"></div>
+                  <div class="interest-text">Gaming</div>
+                </div>
+
+                <div class="interest-item" onclick="toggleInterest('movies')">
+                  <div class="interest-checkbox" id="movies-checkbox"></div>
+                  <div class="interest-text">Movies & TV</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security for profile emplement in future -->
+            <!-- <section>
+              <h2 class="section-title">Security</h2>
+              <div class="form-group">
+                <label for="current-password">Current Password</label>
+                <input
+                  type="password"
+                  id="current-password"
+                  class="form-control"
+                  placeholder="Enter your current password"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="new-password">New Password</label>
+                <input
+                  type="password"
+                  id="new-password"
+                  class="form-control"
+                  placeholder="Enter new password"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-password">Confirm New Password</label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  class="form-control"
+                  placeholder="Confirm new password"
+                />
+              </div>
+
+              <div class="privacy-section">
+                <h2 class="section-title">Privacy Settings</h2>
+                <div class="privacy-options">
+                  <div class="privacy-option">
+                    <input type="checkbox" id="show-email" checked />
+                    <label for="show-email"
+                      >Show my email to chat partners</label
+                    >
+                  </div>
+
+                  <div class="privacy-option">
+                    <input type="checkbox" id="show-age" checked />
+                    <label for="show-age">Show my age to chat partners</label>
+                  </div>
+
+                  <div class="privacy-option">
+                    <input type="checkbox" id="show-location" />
+                    <label for="show-location"
+                      >Show my location to chat partners</label
+                    >
+                  </div>
+
+                  <div class="privacy-option">
+                    <input type="checkbox" id="two-factor" checked />
+                    <label for="two-factor"
+                      >Enable two-factor authentication</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </section> -->
+
+            <div class="form-actions">
+              <button class="btn btn-outline">Cancel</button>
+              <button class="btn btn-primary" onclick="saveProfile()">
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2023 Shield-Talk. All rights reserved. |
+          <a href="privacy.html" style="color: #ddd">Privacy Policy</a>
+        </p>
+      </div>
+    </footer>
+
+   
+  </body>
+</html>
+

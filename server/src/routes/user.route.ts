@@ -1,9 +1,14 @@
 import { Router } from "express";
 import { login, register } from "../controllers/auth.controller";
+import { getUserProfile, updateUserProfile } from "../controllers/user.controller";
 
 // import other user-related controllers like register, getProfile, etc.
 
 const router = Router();
+
+// Get User Profile
+
+router.get("/profile", getUserProfile)
 
 /************************** AUTH ROUTES **************************/
 
@@ -62,9 +67,30 @@ router.post("/register", register);
 /************************** PATCH **************************/
 
 // Example PATCH endpoint
-router.patch("/profile", (req, res) => {
-  res.send("Update profile endpoint");
-});
+//**
+// * @swagger
+// * /api/users/update-profile:
+// *   patch:
+// *     summary: Update user profile
+// *     tags: [Users]
+// *     requestBody:
+// *       required: true
+// *       content:
+// *         application/json:
+// *           schema:
+// *             type: object
+// *             properties:
+// *               name:
+// *                 type: string
+// *               email:
+// *                 type: string
+// *               password:
+// *                 type: string
+// *     responses:
+// *       200:
+// *         description: User profile updated successfully
+//  */
+router.patch("/update-profile", updateUserProfile);
 
 /************************** PUT **************************/
 

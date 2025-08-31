@@ -15,4 +15,5 @@ export interface IUser {
   location?: string;
   sex?: string;
   avatar?: string;
+  lastLogin?: Date;
 }

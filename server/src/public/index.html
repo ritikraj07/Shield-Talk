@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shield-Talk - Connect Safely with People Worldwide</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/user-profile.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">ST</div>
+                <span>Shield-Talk</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="/v1">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#safety">Safety</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Log In</a>
+                <a href="register.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            
+            <div class="user-profile">
+                <span class="user-name">Hello, User</span>
+                <img src="" alt="User Avatar" class="user-avatar">
+                <div class="dropdown-menu">
+                    <a href="/v1/profile-view.html" class="dropdown-item">
+                        <span>👤</span> Profile
+                    </a>
+                    <a href="/v1/profile-edit.html" class="dropdown-item">
+                        <span>✏️</span> Edit Profile
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" id="logout-btn">
+                        <span>🚪</span> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Connect Safely with People Worldwide</h1>
+            <p>Shield-Talk lets you have text, audio, and video conversations with people around the globe while prioritizing your privacy and security.</p>
+            
+            <div class="hero-buttons">
+                <a href="mode-selection.html" class="btn btn-accent btn-large">Start Chatting Now</a>
+                <a href="#how-it-works" class="btn btn-outline btn-large">Learn More</a>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>End-to-End Encryption</h3>
+                    <p>Your conversations are private and secure</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌎</div>
+                    <h3>Global Connections</h3>
+                    <p>Meet people from all around the world</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎭</div>
+                    <h3>Multiple Modes</h3>
+                    <p>Text, audio, or video - your choice</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Mode Selection Section -->
+    <section class="section" id="chat-mode">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choose Your Chat Mode</h2>
+                <p>Select how you want to connect with others. You can always switch modes later.</p>
+            </div>
+            
+            <div class="mode-selection">
+                <div class="mode-card">
+                    <div class="mode-icon">💬</div>
+                    <h3>Text Chat</h3>
+                    <p>Connect through instant messaging with people around the world.</p>
+                    <a href="chat.html?mode=text" class="btn btn-primary">Select Text Mode</a>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-icon">🎤</div>
+                    <h3>Audio Chat</h3>
+                    <p>Have voice conversations with random strangers or friends.</p>
+                    <a href="chat.html?mode=audio" class="btn btn-primary">Select Audio Mode</a>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-icon">📹</div>
+                    <h3>Video Chat</h3>
+                    <p>Face-to-face video conversations with people worldwide.</p>
+                    <a href="chat.html?mode=video" class="btn btn-primary">Select Video Mode</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section" id="how-it-works" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Shield-Talk Works</h2>
+                <p>Getting started is simple and takes just a few seconds</p>
+            </div>
+            
+            <div class="mode-selection">
+                <div class="mode-card">
+                    <div class="mode-icon">1</div>
+                    <h3>Choose Your Mode</h3>
+                    <p>Select text, audio, or video chat based on your preference.</p>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-icon">2</div>
+                    <h3>Get Matched</h3>
+                    <p>Our system will connect you with someone who has similar preferences.</p>
+                </div>
+                
+                <div class="mode-card">
+                    <div class="mode-icon">3</div>
+                    <h3>Start Chatting</h3>
+                    <p>Begin your conversation. If it's not a good match, simply click "Next".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Section -->
+    <section class="section" id="safety">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Safety is Our Priority</h2>
+                <p>We've implemented multiple layers of protection for your peace of mind</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>End-to-End Encryption</h3>
+                    <p>All conversations are encrypted so only you and your chat partner can access them.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Reporting System</h3>
+                    <p>Easily report inappropriate behavior with our one-click reporting system.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>No Data Storage</h3>
+                    <p>We don't store your conversation data after your chat session ends.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚫</div>
+                    <h3>Content Moderation</h3>
+                    <p>Our systems help detect and prevent inappropriate content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shield-Talk</h3>
+                    <p>Connecting people safely through text, audio, and video chats.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#safety">Safety</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="guidelines.html">Community Guidelines</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="mailto:support@shield-talk.com">support@shield-talk.com</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Shield-Talk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+    <script src="./script/index.js"></script>
+</html>

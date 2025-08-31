@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Chat - Shield-Talk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/audio-chat.css">
+    <script src="./script/auth.check.js" defer></script>
+    <script src="./script/audio-chat.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">ST</div>
+                <span>Shield-Talk</span>
+            </div>
+            
+            <div class="audio-info">
+                <div class="room-info">
+                    <span class="room-name" id="room-name">English Practice Room</span>
+                    <span class="user-count">👥 <span id="user-count">12</span> online</span>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <button class="action-btn" onclick="toggleRoomList()">
+                    <i class="fas fa-door-open"></i>
+                    <span class="btn-label">Rooms</span>
+                </button>
+                <button class="action-btn" onclick="toggleUserList()">
+                    <i class="fas fa-users"></i>
+                    <span class="btn-label">Users</span>
+                </button>
+                <button class="action-btn" onclick="showSettings()">
+                    <i class="fas fa-cog"></i>
+                    <span class="btn-label">Settings</span>
+                </button>
+                <a href="index.html" class="leave-btn">
+                    <i class="fas fa-phone-slash"></i>
+                    <span class="btn-label">Leave</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <div class="chat-container">
+            <div class="room-content">
+                <div class="room-header">
+                    <h1 id="current-room-name">English Practice Room</h1>
+                    <div class="room-description">
+                        <p>Practice your English skills with people from around the world. All levels welcome!</p>
+                        <div class="room-stats">
+                            <span class="stat"><i class="fas fa-microphone"></i> <span id="speaking-count">5</span> speaking</span>
+                            <span class="stat"><i class="fas fa-user"></i> <span id="listening-count">7</span> listening</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="participants-grid" id="participants-grid">
+                    <!-- Participants will be added here dynamically -->
+                </div>
+                
+                <div class="chat-box">
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Chat messages will be added here -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="message-input" placeholder="Type your message here...">
+                        <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls-container">
+                <button class="control-btn" id="mute-btn">
+                    <i class="fas fa-microphone"></i>
+                    <span class="control-label">Mute</span>
+                </button>
+                <button class="control-btn" id="deafen-btn">
+                    <i class="fas fa-volume-up"></i>
+                    <span class="control-label">Deafen</span>
+                </button>
+                <button class="control-btn" id="settings-btn">
+                    <i class="fas fa-cog"></i>
+                    <span class="control-label">Settings</span>
+                </button>
+                <button class="control-btn leave-call" id="leave-btn">
+                    <i class="fas fa-phone-slash"></i>
+                    <span class="control-label">Leave</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="users">Users (<span id="sidebar-user-count">12</span>)</button>
+                <button class="tab-btn" data-tab="rooms">Rooms</button>
+            </div>
+            
+            <div class="tab-content active" id="users-tab">
+                <div class="search-box">
+                    <input type="text" placeholder="Search users..." id="user-search">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="user-list" id="user-list">
+                    <!-- Users will be added here dynamically -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="rooms-tab">
+                <div class="search-box">
+                    <input type="text" placeholder="Search rooms..." id="room-search">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="room-list" id="room-list">
+                    <!-- Rooms will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room List Modal -->
+    <div class="modal" id="room-list-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Available Rooms</h2>
+                <button class="close-modal" onclick="toggleRoomList()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="room-categories">
+                    <button class="category-btn active" data-category="all">All Rooms</button>
+                    <button class="category-btn" data-category="language">Languages</button>
+                    <button class="category-btn" data-category="topic">Topics</button>
+                    <button class="category-btn" data-category="region">Regions</button>
+                </div>
+                
+                <div class="rooms-container" id="rooms-container">
+                    <!-- Rooms will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Audio Settings</h2>
+                <button class="close-modal" onclick="hideSettings()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3>Input Device</h3>
+                    <select id="input-device">
+                        <option value="default">Default Microphone</option>
+                    </select>
+                    <div class="volume-slider">
+                        <label>Microphone Volume</label>
+                        <input type="range" min="0" max="100" value="80" id="mic-volume">
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Output Device</h3>
+                    <select id="output-device">
+                        <option value="default">Default Speakers</option>
+                    </select>
+                    <div class="volume-slider">
+                        <label>Speaker Volume</label>
+                        <input type="range" min="0" max="100" value="70" id="speaker-volume">
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Audio Processing</h3>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="noise-suppression" checked>
+                        <label for="noise-suppression">Noise Suppression</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="echo-cancellation" checked>
+                        <label for="echo-cancellation">Echo Cancellation</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+                <button class="btn btn-secondary" onclick="hideSettings()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <script src="audio-chat.js"></script>
+</body>
+</html>

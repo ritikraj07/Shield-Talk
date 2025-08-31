@@ -10,27 +10,77 @@ import User from "../models/user.model";
 import jwt from "jsonwebtoken";
 import config from "../config";
 import { hashPassword } from "../utils/hash";
-
+import { decryptData } from "../utils/crypto";
 
 // save hashedPwd instead of plain password
 
 
+
+export const ContinueWithGoogle = async (
+  accessToken: string,
+  refreshToken: string,
+  profile: any,
+  done: any
+) => {
+  try {
+    let { displayName, emails, photos, provider } = profile;
+    let email = emails[0].value;
+    let avatar = photos[0].value;
+
+    // First try to find the user
+    let user = await User.findOne({ email, provider });
+
+    if (user) {
+      // Update existing user
+      user.avatar = avatar;
+      user.lastLogin = new Date();
+      user = await user.save();
+    } else {
+      // Create new user
+      user = await User.create({
+        name: displayName,
+        email,
+        avatar,
+        provider,
+        userName: displayName,
+      });
+    }
+
+    return done(null, user);
+  } catch (error) {
+    return done(error, null);
+  }
+};
+
+
+
+
 // Login user and return token
 export async function login(req: Request, res: Response) {
+  console.log("====>", req.body);
   try {
-    let { email, password, userName } = req.body;
-    const hashedPwd = await hashPassword(password);
+    // req.body = decryptData(req.body);
+    let { email, userName, password } = req.body;
+
+    // const hashedPwd = await hashPassword(password);
     let user = await User.findOne({
       $and: [
         { $or: [{ email: email }, { userName: userName }] },
-        { password: hashedPwd },
       ],
     });
+    // console.log("user", user);
 
     if (user) {
-      return res
-        .status(200)
-        .json({ message: "User logged in successfully", user });
+      if (user.password === password) {
+        return res
+          .status(200)
+          .json({ message: "User logged in successfully", user });
+      } else {
+         return res
+           .status(300)
+           .json({ message: "Wrong Password" });
+      }
+     
     } else {
       return res.status(400).json({ message: "User not found" });
     }
@@ -92,21 +142,17 @@ export async function refreshToken(req: Request, res: Response) {
   }
 }
 
-
 async function CreateToken(userId: string) {
-    try {
-        return jwt.sign({ userId }, config.JWT_SECRET_KEY, {
-          expiresIn: "15d",
-          algorithm: "HS256",
-        });
-        
-    } catch (error) {
-        console.error("Error creating token:", error);
-        return null;
-    }
+  try {
+    return jwt.sign({ userId }, config.JWT_SECRET_KEY, {
+      expiresIn: "15d",
+      algorithm: "HS256",
+    });
+  } catch (error) {
+    console.error("Error creating token:", error);
+    return null;
+  }
 }
-
-
 
 // fake DB for demo
 let fakeUserDB = {

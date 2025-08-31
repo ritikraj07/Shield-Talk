@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat - Shield-Talk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/video-chat.css">
+    <script src="./script/auth.check.js" defer></script>
+    <script src="./script/video-chat.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">ST</div>
+                <span>Shield-Talk</span>
+            </div>
+            
+            <div class="meet-info">
+                <div class="meet-timing">
+                    <span>🕒</span>
+                    <span id="meet-timer">00:05:32</span>
+                </div>
+                <div class="meet-code">
+                    <span>🔒</span>
+                    <span id="meet-code">STP-289-774</span>
+                    <button class="action-btn" onclick="copyMeetCode()">📋</button>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <button class="action-btn" onclick="toggleChat()">💬</button>
+                <button class="action-btn" onclick="toggleMobileSidebar()">👥</button>
+                <button class="action-btn" onclick="toggleSettings()">⚙️</button>
+                <button class="hamburger-menu" onclick="toggleMobileSidebar()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <div class="video-grid-container">
+            <div class="pinned-section" id="pinned-section">
+                <!-- Pinned videos will appear here -->
+                <div class="video-item pinned">
+                    <div class="video-placeholder">
+                        <div class="icon">👤</div>
+                        <div>Sarah Johnson</div>
+                    </div>
+                    <div class="participant-info">
+                        <div class="participant-avatar">S</div>
+                        <div class="participant-name">Sarah Johnson</div>
+                        <div class="participant-status"></div>
+                    </div>
+                    <div class="video-actions">
+                        <button class="action-btn pin-btn active" onclick="togglePin(1)">📌</button>
+                        <button class="action-btn mute-btn" onclick="toggleRemoteMute(1)">🔇</button>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-placeholder">
+                        <div class="icon">👤</div>
+                        <div>James Wilson</div>
+                    </div>
+                    <div class="participant-info">
+                        <div class="participant-avatar">J</div>
+                        <div class="participant-name">James Wilson</div>
+                        <div class="participant-status muted"></div>
+                    </div>
+                    <div class="video-actions">
+                        <button class="action-btn pin-btn" onclick="togglePin(2)">📌</button>
+                        <button class="action-btn mute-btn" onclick="toggleRemoteMute(2)">🔇</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="participants-grid" id="participants-grid">
+                <!-- Other participants will appear here -->
+                <div class="video-item">
+                    <div class="video-placeholder connecting">
+                        <div class="icon">🔗</div>
+                        <div>Connecting...</div>
+                    </div>
+                    <div class="participant-info">
+                        <div class="participant-avatar">M</div>
+                        <div class="participant-name">Maria Garcia</div>
+                        <div class="participant-status"></div>
+                    </div>
+                    <div class="video-actions">
+                        <button class="action-btn pin-btn" onclick="togglePin(3)">📌</button>
+                        <button class="action-btn mute-btn" onclick="toggleRemoteMute(3)">🔇</button>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-placeholder">
+                        <div class="icon">👤</div>
+                        <div>David Kim</div>
+                    </div>
+                    <div class="participant-info">
+                        <div class="participant-avatar">D</div>
+                        <div class="participant-name">David Kim</div>
+                        <div class="participant-status muted"></div>
+                    </div>
+                    <div class="video-actions">
+                        <button class="action-btn pin-btn" onclick="togglePin(4)">📌</button>
+                        <button class="action-btn mute-btn" onclick="toggleRemoteMute(4)">🔇</button>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-placeholder">
+                        <div class="icon">👤</div>
+                        <div>Alex Chen</div>
+                    </div>
+                    <div class="participant-info">
+                        <div class="participant-avatar">A</div>
+                        <div class="participant-name">Alex Chen</div>
+                        <div class="participant-status"></div>
+                    </div>
+                    <div class="video-actions">
+                        <button class="action-btn pin-btn" onclick="togglePin(5)">📌</button>
+                        <button class="action-btn mute-btn" onclick="toggleRemoteMute(5)">🔇</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-section">
+                <h3>Participants (6)</h3>
+                <div class="participant-list">
+                    <div class="participant-item">
+                        <div class="participant-avatar">Y</div>
+                        <div>You</div>
+                        <div class="participant-status"></div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-avatar">S</div>
+                        <div>Sarah Johnson</div>
+                        <div class="participant-status"></div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-avatar">J</div>
+                        <div>James Wilson</div>
+                        <div class="participant-status muted"></div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-avatar">M</div>
+                        <div>Maria Garcia</div>
+                        <div class="participant-status"></div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-avatar">D</div>
+                        <div>David Kim</div>
+                        <div class="participant-status muted"></div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-avatar">A</div>
+                        <div>Alex Chen</div>
+                        <div class="participant-status"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Chat</h3>
+                <div style="text-align: center; padding: 2rem 0; color: #aaa;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💬</div>
+                    <p>Send messages to participants</p>
+                    <button class="action-btn" style="margin-top: 1rem;" onclick="toggleChat()">Open Chat</button>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Activities</h3>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="action-btn" style="width: 100%; justify-content: center; border-radius: var(--border-radius);">
+                        🖥️ Share Screen
+                    </button>
+                    <button class="action-btn" style="width: 100%; justify-content: center; border-radius: var(--border-radius);">
+                        🎮 Start Activity
+                    </button>
+                    <button class="action-btn" style="width: 100%; justify-content: center; border-radius: var(--border-radius);">
+                        📊 Present Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobile-sidebar">
+        <button class="close-sidebar" onclick="toggleMobileSidebar()">×</button>
+        
+        <div class="sidebar-section">
+            <h3>Participants (6)</h3>
+            <div class="participant-list">
+                <div class="participant-item">
+                    <div class="participant-avatar">Y</div>
+                    <div>You</div>
+                    <div class="participant-status"></div>
+                </div>
+                <div class="participant-item">
+                    <div class="participant-avatar">S</div>
+                    <div>Sarah Johnson</div>
+                    <div class="participant-status"></div>
+                </div>
+                <div class="participant-item">
+                    <div class="participant-avatar">J</div>
+                    <div>James Wilson</div>
+                    <div class="participant-status muted"></div>
+                </div>
+                <div class="participant-item">
+                    <div class="participant-avatar">M</div>
+                    <div>Maria Garcia</div>
+                    <div class="participant-status"></div>
+                </div>
+                <div class="participant-item">
+                    <div class="participant-avatar">D</div>
+                    <div>David Kim</div>
+                    <div class="participant-status muted"></div>
+                </div>
+                <div class="participant-item">
+                    <div class="participant-avatar">A</div>
+                    <div>Alex Chen</div>
+                    <div class="participant-status"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <h3>Chat</h3>
+            <div style="text-align: center; padding: 2rem 0; color: #aaa;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">💬</div>
+                <p>Send messages to participants</p>
+                <button class="action-btn" style="margin-top: 1rem;" onclick="toggleChat()">Open Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMobileSidebar()"></div>
+
+    <div class="self-view-container" id="self-view">
+        <div class="video-placeholder">
+            <div class="icon">👤</div>
+            <div>You</div>
+        </div>
+        <div class="self-view-actions">
+            <button class="action-btn" onclick="toggleVideo()">📹</button>
+            <button class="action-btn" onclick="toggleAudio()">🎤</button>
+        </div>
+        <button class="self-view-toggle" onclick="toggleSelfView()">−</button>
+    </div>
+
+    <div class="controls-container">
+        <button class="control-btn" id="control-video" onclick="toggleVideo()">
+            <span class="control-icon">📹</span>
+        </button>
+        <button class="control-btn" id="control-audio" onclick="toggleAudio()">
+            <span class="control-icon">🎤</span>
+        </button>
+        <button class="control-btn" onclick="shareScreen()">
+            <span class="control-icon">🖥️</span>
+        </button>
+        <button class="control-btn" onclick="toggleChat()">
+            <span class="control-icon">💬</span>
+        </button>
+        <button class="control-btn" onclick="toggleMobileSidebar()">
+            <span class="control-icon">👥</span>
+        </button>
+        <button class="control-btn end-call" onclick="endCall()">
+            <span class="control-icon">📞</span>
+        </button>
+    </div>
+
+   
+</body>
+</html>

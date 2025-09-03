@@ -4,11 +4,10 @@
   "description": "server for chat app",
   "main": "index.js",
   "scripts": {
-  "start": "node dist/index.js",      
-  "dev": "nodemon src/index.ts",      
-  "build": "tsc"                      
-},
-
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ritikraj07/Or-Bataao.git/server"
